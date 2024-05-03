@@ -10,8 +10,10 @@ pipeline{
         }
         stage("Quality gate") {
             steps {
-                def qualitygate = waitForQualityGate abortPipeline: false
-                echo "${qualitygate.status}"
+                script{
+                    def qualitygate = waitForQualityGate abortPipeline: false
+                    echo "${qualitygate.status}"
+                }
             }
         }
     }
