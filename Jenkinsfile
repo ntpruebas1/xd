@@ -8,13 +8,10 @@ pipeline{
                 }
             }
         }
-        // stage('quality gate'){
-        //     steps{
-        //         def qualitygate = waitForQualityGate()
-        //         if (qualitygate.status != "OK") {
-        //             error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
-        //         }
-        //     }
-        // }
+        stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
     }
 }
