@@ -10,8 +10,11 @@ pipeline{
         }
         stage("Quality gate") {
             steps {
-                def qualitygate = waitForQualityGate()
-                echo "${qualitygate.status}"
+                timeout(time: 3, unit: 'MINUTES') {
+                    def qualitygate = waitForQualityGate()
+                    echo "${qualitygate.status}"
+                }
+                echo "ASDASD"
             }
         }
     }
